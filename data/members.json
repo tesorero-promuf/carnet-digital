@@ -1,1 +1,33 @@
+[
+  {
+    "id": "PMF-26-001",
+    "nombre": "Esdiover Espina",
+    "cedula": "V-14.545.865",
+    "rol": "Presidente",
+    "periodo_inicio": "2026",
+    "periodo_fin": "2028",
+    "foto": "",
+    "estado": "activo"
+  },
+  {
+    "id": "PMF-26-002",
+    "nombre": "Ana María Pérez",
+    "cedula": "V-12.345.678",
+    "rol": "Violinista",
+    "periodo_inicio": "2026",
+    "periodo_fin": "2028",
+    "foto": "",
+    "estado": "activo"
+  },
+  {
+    "id": "PMF-24-014",
+    "nombre": "Carlos Medina",
+    "cedula": "V-9.876.543",
+    "rol": "Percusionista",
+    "periodo_inicio": "2024",
+    "periodo_fin": "2026",
+    "foto": "",
+    "estado": "vencido"
+  }
+]
 
