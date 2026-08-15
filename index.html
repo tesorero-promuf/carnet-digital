@@ -107,52 +107,7 @@
       : '<div class="ribbon bad">Vencido</div>';
   }
 
-  function render1(m){
-    return '' +
-    '<div class="card d1">' + ribbon(m) +
-      '<div class="top"><img class="logo" src="' + LOGO + '"><div><div class="word"><span class="pro">PRO</span><span class="muf">MUF</span></div><div class="sub">PROFESIONALES DE LA MÚSICA DE FALCÓN</div></div></div>' +
-      '<div class="photo-wrap"><div class="photo-inner">' + photoBlock(m) + '</div></div>' +
-      '<div class="name">' + esc(m.nombre) + '</div>' +
-      '<div class="ced">' + esc(m.cedula) + '</div>' +
-      '<div class="role-pill">' + esc(m.rol) + '</div>' +
-      '<div class="period">PERÍODO ' + esc(m.periodo_inicio) + ' — ' + esc(m.periodo_fin) + '</div>' +
-      '<div class="divider"></div>' +
-      '<div class="qr-row"><div class="qr-box" id="qr-target"></div><div class="qr-text"><b>Verificación digital</b>Escanea para confirmar la vigencia del agremiado en el padrón de PROMUF.</div></div>' +
-      '<div class="foot">' + esc(m.id) + '</div>' +
-    '</div>';
-  }
-
-  function render2(m){
-    return '' +
-    '<div class="card d2">' + ribbon(m) +
-      '<div class="left"><img class="logo" src="' + LOGO + '"><div class="photo-wrap"><div class="photo-inner">' + photoBlock(m) + '</div></div><div class="id-small">' + esc(m.id) + '</div></div>' +
-      '<div class="right">' +
-        '<div class="brand">PRO<span>MUF</span></div>' +
-        '<div class="name">' + esc(m.nombre) + '</div>' +
-        '<div class="ced">C.I. ' + esc(m.cedula) + '</div>' +
-        '<div class="role-pill">' + esc(m.rol) + '</div>' +
-        '<div class="period">Vigente ' + esc(m.periodo_inicio) + ' – ' + esc(m.periodo_fin) + '</div>' +
-        '<div class="qr-row"><div class="qr-box" id="qr-target"></div><div class="scan-label">Escanear para verificar agremiado</div></div>' +
-      '</div>' +
-    '</div>';
-  }
-
-  function render3(m){
-    return '' +
-    '<div class="card d3">' + ribbon(m) +
-      '<div class="top"><img class="logo" src="' + LOGO + '"><div class="assoc">PROMUF</div><div class="assoc-sub">PROFESIONALES DE LA MÚSICA DE FALCÓN</div></div>' +
-      '<div class="rule"></div>' +
-      '<div class="photo-wrap"><div class="photo-inner">' + photoBlock(m) + '</div></div>' +
-      '<div class="name">' + esc(m.nombre) + '</div>' +
-      '<div class="ced">' + esc(m.cedula) + '</div>' +
-      '<div class="role-row"><div class="role-pill">' + esc(m.rol) + '</div></div>' +
-      '<div class="period">Período ' + esc(m.periodo_inicio) + ' – ' + esc(m.periodo_fin) + '</div>' +
-      '<div class="qr-wrap"><div class="qr-box" id="qr-target"></div><div class="qr-caption">Verificar agremiado</div></div>' +
-      '<div class="foot-id">' + esc(m.id) + '</div>' +
-    '</div>';
-  }
-
-  function render4(m){
+    function render4(m){
     return '' +
     '<div class="card d4">' + ribbon(m) +
       '<img class="watermark" src="' + LOGO_WATERMARK + '">' +
@@ -171,7 +126,56 @@
     '</div>';
   }
 
-  var RENDERERS = {"1": render1, "2": render2, "3": render3, "4": render4};
+  function showState(icon, title, text){
+    document.getElementById('app').innerHTML =
+      '<div class="state-box"><div class="ic">' + icon + '</div><h2>' + esc(title) + '</h2><p>' + esc(text) + '</p></div>';
+  }
+
+  function canonicalUrl(id){
+    return location.origin + location.pathname + '?id=' + encodeURIComponent(id);
+  }
+
+  function paintQR(id){
+    var el = document.getElementById('qr-target');
+    if(!el) return;
+    new QRCode(el, {
+      text: canonicalUrl(id),
+      width: 80, height: 80,
+      colorDark: "#0a1830", colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }
+
+  async function init(){
+    var params = new URLSearchParams(location.search);
+    var id = params.get('id');
+    
+    // Ya no buscamos el parámetro 'design'. 
+    // Si falta el ID, mostramos el mensaje pidiendo solo el código.
+    if(!id){
+      showState('🪪', 'Falta el código del carnet', 'Este enlace necesita un identificador, por ejemplo: ?id=PMF-26-001');
+      return;
+    }
+
+    try{
+      var res = await fetch(JSON_PATH, {cache:'no-store'});
+      if(!res.ok) throw new Error('no-fetch');
+      var members = await res.json();
+      var member = members.find(function(m){ return m.id === id; });
+      if(!member){
+        showState('❓', 'Agremiado no encontrado', 'El código ' + id + ' no está registrado en el padrón de PROMUF.');
+        return;
+      }
+      
+      // Aquí llamamos directamente a render4 en lugar de buscar en un diccionario de diseños
+      document.getElementById('app').innerHTML = render4(member);
+      paintQR(member.id);
+    }catch(err){
+      showState('⚠️', 'No se pudo cargar el carnet', 'Verifica tu conexión a internet e intenta de nuevo.');
+    }
+  }
+
+  init();
 
   function showState(icon, title, text){
     document.getElementById('app').innerHTML =
