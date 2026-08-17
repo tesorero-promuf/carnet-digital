@@ -228,6 +228,7 @@ var AV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
 var state = { member: null, photoB64: null, photoSrc: null, busy: false };
 
 function esc(s){ return String(s||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function fmtId(id){ return String(id||'').replace(/PMF-(\d{2})-/,'PMF-20$1-'); }
 function $id(id){ return document.getElementById(id); }
 function set(html){ $id('app').innerHTML = html; }
 
@@ -320,7 +321,7 @@ function showStep2(){
         '<div class="ok-badge">✅ Solvente</div>',
         '<div class="ok-name">'+esc(m.nombre)+'</div>',
         '<div class="ok-rol">'+esc(m.cargo)+instLine+'</div>',
-        '<div class="ok-meta">'+esc(m.cedula)+' &nbsp;·&nbsp; '+esc(m.id)+'<br>Período '+esc(m.periodo_inicio)+' – '+esc(m.periodo_fin)+'</div>',
+        '<div class="ok-meta">'+esc(m.cedula)+' &nbsp;·&nbsp; '+fmtId(m.id)+'<br>Período '+esc(m.periodo_inicio)+' – '+esc(m.periodo_fin)+'</div>',
       '</div>',
       '<div class="ptitle" style="font-size:18px;margin-bottom:6px;">Sube tu foto de carnet</div>',
       '<div class="psub" style="margin-bottom:20px;">',
@@ -453,7 +454,7 @@ function showStep3(){
                 '<div class="qc">VERIFICAR MEMBRESÍA</div>',
               '</div>',
             '</div>',
-            '<div class="ft">'+esc(m.id)+' &nbsp;·&nbsp; PROMUF</div>',
+            '<div class="ft">'+fmtId(m.id)+' &nbsp;·&nbsp; PROMUF</div>',
           '</div>',
         '</div>',
       '</div>',
@@ -486,11 +487,8 @@ function showStep3(){
   setTimeout(function(){
     var el = $id('qr-box');
     if(el && window.QRCode){
-      new QRCode(el,{text:perfilUrl,width:128,height:128,
-        colorDark:'#0a1830',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
-      var c=el.querySelector('canvas'),im=el.querySelector('img');
-      if(c){c.style.width='100%';c.style.height='100%';}
-      if(im){im.style.width='100%';im.style.height='100%';im.style.display='block';}
+      new QRCode(el,{text:perfilUrl,width:200,height:200,
+        colorDark:'#0a1830',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
     }
   }, 150);
 }
