@@ -197,6 +197,7 @@ body{margin:0;min-height:100vh;font-family:'Poppins',sans-serif;color:#fff;
   .card .cr{width:18mm!important;height:18mm!important;padding:.5mm!important;margin-bottom:2mm!important;}
   .card .qa{margin-top:2mm!important;}
   .card .qb{width:16mm!important;height:16mm!important;padding:1mm!important;border-radius:1.5mm!important;}
+  .card .qb canvas,.card .qb img{display:block!important;width:100%!important;height:100%!important;}
   .card .qc{font-size:1.5mm!important;margin-top:1mm!important;}
   .card .gl{flex:1!important;min-height:0!important;overflow:hidden!important;}
   .card .pr{margin-bottom:0!important;}
@@ -474,17 +475,22 @@ function showStep3(){
     '</div>'
   ].join(''));
 
-  $id('btn-pdf').addEventListener('click', function(){ window.print(); });
+  $id('btn-pdf').addEventListener('click', function(){
+    var oldTitle = document.title;
+    document.title = 'Carnet ' + m.nombre + ' · PROMUF';
+    window.print();
+    setTimeout(function(){ document.title = oldTitle; }, 2000);
+  });
   $id('btn-perfil').addEventListener('click', function(){ window.open(perfilUrl,'_blank'); });
   $id('btn-nuevo').addEventListener('click', function(){ showStep1(); });
 
-  requestAnimationFrame(function(){
+  setTimeout(function(){
     var el = $id('qr-box');
     if(el && window.QRCode){
       new QRCode(el,{text:perfilUrl,width:200,height:200,
         colorDark:'#0a1830',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
     }
-  });
+  }, 150);
 }
 
 /* ══ Helpers ════════════════════════════════════════════════════════════════ */
