@@ -485,13 +485,11 @@ function showStep3(){
     if(el && window.QRCode){
       new QRCode(el,{text:perfilUrl,width:200,height:200,
         colorDark:'#0a1830',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
-      var c=el.querySelector('canvas');
-      if(c) c.style.display='none';
-    } else {
-      setTimeout(renderQR, 200);
+    } else if(el) {
+      setTimeout(renderQR, 300);
     }
   }
-  renderQR();
+  requestAnimationFrame(renderQR);
 }
 
 /* ══ Helpers ════════════════════════════════════════════════════════════════ */
