@@ -480,15 +480,18 @@ function showStep3(){
   $id('btn-perfil').addEventListener('click', function(){ window.open(perfilUrl,'_blank'); });
   $id('btn-nuevo').addEventListener('click', function(){ showStep1(); });
 
-  setTimeout(function(){
+  function renderQR(){
     var el = $id('qr-box');
     if(el && window.QRCode){
       new QRCode(el,{text:perfilUrl,width:200,height:200,
         colorDark:'#0a1830',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
       var c=el.querySelector('canvas');
       if(c) c.style.display='none';
+    } else {
+      setTimeout(renderQR, 200);
     }
-  }, 150);
+  }
+  renderQR();
 }
 
 /* ══ Helpers ════════════════════════════════════════════════════════════════ */
