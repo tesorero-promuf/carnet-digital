@@ -117,7 +117,6 @@ body{margin:0;min-height:100vh;font-family:'Poppins',sans-serif;color:#fff;
 /* ── Carnet ─────────────────────────────────────────── */
 .carnet-wrap{display:flex;justify-content:center;margin-bottom:20px;}
 /* Proporciones PVC CR80: 54×85.6mm → ratio 0.6308 */
-/* En pantalla: 252×400px aprox — se captura con html2canvas scale=3 */
 .card{
   width:252px;height:400px;
   background:radial-gradient(circle at 30% 0%,#103a52 0%,#060f1f 55%,#051018 100%);
@@ -128,39 +127,39 @@ body{margin:0;min-height:100vh;font-family:'Poppins',sans-serif;color:#fff;
 }
 .card .wm{position:absolute;top:-36px;right:-62px;width:168px;height:173px;
   opacity:.11;transform:rotate(8deg);pointer-events:none;}
-.card .inner{position:relative;padding:13px 15px 12px;height:100%;display:flex;flex-direction:column;}
+.card .inner{position:relative;padding:12px 14px 10px;height:100%;display:flex;flex-direction:column;}
 /* Header */
-.card .hdr{display:flex;align-items:center;gap:8px;margin-bottom:13px;}
-.card .hdr img{width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;}
-.card .hdr .br{font-size:13px;font-weight:800;line-height:1.15;}
+.card .hdr{display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+.card .hdr img{width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.card .hdr .br{font-size:12px;font-weight:800;line-height:1.15;}
 .card .hdr .br .pro{color:var(--teal2);}.card .hdr .br .muf{color:var(--gold);}
-.card .hdr .br .sub{font-size:6.5px;color:#8ab0c8;font-weight:400;display:block;letter-spacing:.3px;}
+.card .hdr .br .sub{font-size:6px;color:#8ab0c8;font-weight:400;display:block;letter-spacing:.3px;}
 /* Glass panel */
 .card .gl{background:rgba(255,255,255,.08);border:.3px solid rgba(255,255,255,.22);
-  border-radius:11px;padding:14px 12px 12px;flex:1;display:flex;flex-direction:column;align-items:center;}
+  border-radius:11px;padding:12px 10px 10px;display:flex;flex-direction:column;align-items:center;}
 /* Photo */
-.card .cr{width:80px;height:80px;border-radius:50%;flex-shrink:0;
-  background:linear-gradient(135deg,#7fe3d4,#1aa39a 55%,#e6c468);padding:2.5px;margin-bottom:10px;}
+.card .cr{width:65px;height:65px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#7fe3d4,#1aa39a 55%,#e6c468);padding:2px;margin-bottom:8px;}
 .card .ci{width:100%;height:100%;border-radius:50%;background:#0c1c33;overflow:hidden;
   display:flex;align-items:center;justify-content:center;}
 .card .ci img{width:100%;height:100%;object-fit:cover;}
 .card .ci svg{width:52%;height:52%;color:#9fb0c8;}
 /* Text */
-.card .nm{font-size:14.5px;font-weight:800;text-align:center;line-height:1.2;margin-bottom:4px;}
-.card .cd{font-size:9.5px;color:#a9c2d6;letter-spacing:.5px;margin-bottom:9px;}
+.card .nm{font-size:13px;font-weight:800;text-align:center;line-height:1.2;margin-bottom:3px;}
+.card .cd{font-size:8.5px;color:#a9c2d6;letter-spacing:.5px;margin-bottom:6px;}
 .card .rp{background:rgba(63,208,201,.16);border:.3px solid #3fd0c9;color:#7fe3d4;
-  font-size:10px;font-weight:700;letter-spacing:.5px;padding:4px 13px;
-  border-radius:16px;margin-bottom:5px;text-align:center;}
-.card .ins{font-size:9px;color:#5de8b8;letter-spacing:.3px;margin-bottom:8px;font-weight:500;}
-.card .pr{font-size:8px;color:#7e93ad;letter-spacing:.3px;margin-bottom:auto;}
+  font-size:9px;font-weight:700;letter-spacing:.5px;padding:3px 11px;
+  border-radius:14px;margin-bottom:4px;text-align:center;}
+.card .ins{font-size:8px;color:#5de8b8;letter-spacing:.3px;margin-bottom:5px;font-weight:500;}
+.card .pr{font-size:7px;color:#7e93ad;letter-spacing:.3px;margin-bottom:8px;}
 /* QR */
-.card .qa{display:flex;flex-direction:column;align-items:center;margin-top:10px;}
-.card .qb{background:#fff;padding:4px;border-radius:7px;width:85px;height:85px;
+.card .qa{display:flex;flex-direction:column;align-items:center;margin-top:auto;}
+.card .qb{background:#fff;padding:4px;border-radius:7px;width:90px;height:90px;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 0 1.5px #3fd0c9,0 0 14px rgba(63,208,201,.4);}
 .card .qb img,.card .qb canvas{width:100%!important;height:100%!important;}
-.card .qc{font-size:6.5px;color:#7e93ad;letter-spacing:.6px;margin-top:5px;text-align:center;}
-.card .ft{margin-top:10px;font-size:7.5px;color:#516781;letter-spacing:1px;
+.card .qc{font-size:6px;color:#7e93ad;letter-spacing:.6px;margin-top:4px;text-align:center;}
+.card .ft{margin-top:8px;font-size:7px;color:#516781;letter-spacing:1px;
   text-align:center;font-weight:600;}
 
 /* ── Acciones carnet ─────────────────────────────────── */
@@ -183,22 +182,22 @@ body{margin:0;min-height:100vh;font-family:'Poppins',sans-serif;color:#fff;
     width:54mm!important;height:85.6mm!important;border-radius:3mm!important;
     box-shadow:none!important;position:fixed;top:0;left:0;
   }
-  .card .nm{font-size:3.5mm!important;}
-  .card .cd{font-size:2.2mm!important;}
-  .card .rp{font-size:2.4mm!important;padding:.8mm 3mm!important;border-radius:3.5mm!important;}
-  .card .ins{font-size:2mm!important;}
-  .card .pr{font-size:1.9mm!important;}
-  .card .hdr{gap:2mm!important;margin-bottom:3mm!important;}
-  .card .hdr img{width:7mm!important;height:7mm!important;}
-  .card .hdr .br{font-size:3mm!important;}
-  .card .hdr .br .sub{font-size:1.5mm!important;}
-  .card .inner{padding:3mm 3.5mm 2.5mm!important;}
-  .card .gl{border-radius:2.5mm!important;padding:3mm 2.5mm 2.5mm!important;}
-  .card .cr{width:18mm!important;height:18mm!important;padding:.5mm!important;margin-bottom:2mm!important;}
-  .card .qa{margin-top:2mm!important;}
-  .card .qb{width:16mm!important;height:16mm!important;padding:1mm!important;border-radius:1.5mm!important;}
-  .card .qc{font-size:1.5mm!important;margin-top:1mm!important;}
-  .card .ft{font-size:1.9mm!important;margin-top:2mm!important;}
+  .card .inner{padding:2.5mm 3mm 2mm!important;}
+  .card .hdr{gap:1.5mm!important;margin-bottom:2mm!important;}
+  .card .hdr img{width:6mm!important;height:6mm!important;}
+  .card .hdr .br{font-size:2.8mm!important;}
+  .card .hdr .br .sub{font-size:1.3mm!important;}
+  .card .gl{border-radius:2mm!important;padding:2.5mm 2mm 2mm!important;}
+  .card .cr{width:14mm!important;height:14mm!important;padding:.4mm!important;margin-bottom:1.5mm!important;}
+  .card .nm{font-size:3mm!important;margin-bottom:1mm!important;}
+  .card .cd{font-size:2mm!important;margin-bottom:1.5mm!important;}
+  .card .rp{font-size:2.2mm!important;padding:.6mm 2.5mm!important;border-radius:3mm!important;margin-bottom:1mm!important;}
+  .card .ins{font-size:1.8mm!important;margin-bottom:1mm!important;}
+  .card .pr{font-size:1.7mm!important;margin-bottom:1.5mm!important;}
+  .card .qa{margin-top:auto!important;}
+  .card .qb{width:22mm!important;height:22mm!important;padding:1mm!important;border-radius:1.5mm!important;}
+  .card .qc{font-size:1.4mm!important;margin-top:1mm!important;}
+  .card .ft{font-size:1.8mm!important;margin-top:1.5mm!important;}
   .card .wm{top:-8mm!important;right:-14mm!important;width:38mm!important;height:38mm!important;}
 }
 </style>
